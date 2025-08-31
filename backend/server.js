@@ -42,6 +42,7 @@ app.use(
       'http://192.168.83.111:5173',
       'http://localhost:3000',
       'https://portfolio-dev-dushyant.vercel.app',
+      'https://taskmate-8k87.onrender.com'
     ],
     // origin: ['*'],
     credentials: true,
