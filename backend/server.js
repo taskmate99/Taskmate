@@ -53,7 +53,7 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(passport.initialize());
 
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST;
+const HOST = process.env.HOST || null;
 const __dirname = path.resolve();
 
 // function to get the IP address of the machine
