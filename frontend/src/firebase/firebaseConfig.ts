@@ -1,0 +1,31 @@
+import { initializeApp } from 'firebase/app';
+import { getAuth, GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { getMessaging, onMessage } from 'firebase/messaging';
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENTID,
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
+
+export const messaging = getMessaging(app);
+
+const onMessageListener = () => {
+  return new Promise((resolve) => {
+    onMessage(messaging, (payload) => {
+      console.log('message payload :>>', payload);
+      resolve(payload);
+    });
+  });
+};
+
+export { auth, googleProvider, githubProvider, onMessageListener };
